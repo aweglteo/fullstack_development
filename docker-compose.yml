@@ -1,8 +1,6 @@
 version: '2'
 services:
   backend:
-    environment:
-        GOPATH: "/go"
     build:
         ./api/
     tty: true
