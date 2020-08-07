@@ -1,0 +1,10 @@
+version: '2'
+services:
+  backend:
+    environment:
+        GOPATH: "/go"
+    build:
+        ./api/
+    tty: true
+    ports:
+      - "8080:8080"
