@@ -18,7 +18,7 @@ class App extends React.Component {
     const nameLen = this.state.name.length;
     if (nameLen > 0) {
       this.setState({
-        msg: `You name has ${nameLen} characters including space`
+        msg: `You name has ${nameLen} characters including space!!`
       });
     }
   };
@@ -41,8 +41,10 @@ class App extends React.Component {
       msg = "";
     }
     return (
-      //do something here where there is a button that will replace the text
       <div>
+        <div>
+          <a href="/a">Let's go Toppage</a>
+        </div>
         <label>Your name </label>
         <input
           type="text"

@@ -8,11 +8,29 @@ services:
       - "8080:8080"
     volumes:
       - ./api:/go/src/work
-  bff:
-    build:
-      ./bff/
-    tty: true
+      
+  # bff:
+  #   build:
+  #     ./bff/
+  #   tty: true
+  #   ports:
+  #     - "3030:3030"
+  #   volumes:
+  #     - ./bff:/bff/src/work/
+  #   environment:
+  #     - CHOKIDAR_USEPOLLING=true
+
+  postgresql:
+    image: postgres:latest
     ports:
-      - "3030:3030"
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+    user: root
     volumes:
-      - ./bff:/node/src/work
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

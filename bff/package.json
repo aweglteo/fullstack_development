@@ -32,7 +32,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "nodemon --exec babel-node src/server.js",
+    "dev": "nodemon --exec babel-node -L src/server.js",
     "webpack": "webpack -wd"
   },
   "eslintConfig": {

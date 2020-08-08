@@ -6,8 +6,11 @@ mkdir /bff/src/work
 
 WORKDIR /bff/src/work
 
-ADD . /bff/src/work
+COPY startup.sh .
+COPY package.json . 
+
 RUN npm install
 
-CMD ["npm", "run", "webpack"]
-ENTRYPOINT ["npm", "run", "dev"]
+RUN chmod 744 ./startup.sh
+
+ENTRYPOINT ["./startup.sh"]

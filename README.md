@@ -1,4 +1,4 @@
-## Full Stack Develoment Kit 
+## Full Stack Develoment Tutorial
 
 ![infrastructure](https://github.com/aweglteo/fullstack_development/blob/master/doc/images/infra.png?raw=true)
 
@@ -8,5 +8,5 @@
 2. `dockr-compose up -d`
 
 
-That't all 
+That't all  
 Let's enjoy your full stack travel !!
