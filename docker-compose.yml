@@ -2,7 +2,17 @@ version: '2'
 services:
   backend:
     build:
-        ./api/
+      ./api/
     tty: true
     ports:
       - "8080:8080"
+    volumes:
+      - ./api:/go/src/work
+  frontend:
+    build:
+      ./frontend/
+    tty: true
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/node/src/work
