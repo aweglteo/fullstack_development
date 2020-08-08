@@ -1,14 +1,12 @@
 import express from "express";
 import compression from "compression";
-import ssr from "./routes/ssr";
-import route1 from "./routes/route"
+import route from "./routes/route"
 
 const app = express();
 
 app.use(compression());
 
-app.use("/", route1);
-app.use("/firstssr", ssr);
+app.use("/", route);
 
 app.use(express.static("public"));
 

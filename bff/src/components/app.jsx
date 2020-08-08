@@ -30,7 +30,6 @@ class App extends React.Component {
   handleReset = () => {
     this.setState({ name: "", msg: "" });
   };
-  //End Handlers
 
   render() {
     let msg;
