@@ -1,6 +1,6 @@
 ## Full Stack Develoment Kit 
 
-![infrastructure](https://github.com/aweglteo/fullstack_development/tree/master/doc/images/infra.png)
+![infrastructure](https://github.com/aweglteo/fullstack_development/blob/master/doc/images/infra.png?raw=true)
 
 ## Getting Start
 
