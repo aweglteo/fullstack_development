@@ -15,8 +15,6 @@ import (
 type Server struct {
 }
 
-// sampleUrl := "https://tabelog.com/tokyo/A1310/A131002/13181683/"
-
 func (s *Server) GetShopInfo(ctx context.Context, message *pb.GetScrapingRequest) (*pb.ScrapingResponse, error) {
 	tabelogUrl := message.TargetLink
 
