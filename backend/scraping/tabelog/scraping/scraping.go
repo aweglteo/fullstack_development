@@ -33,12 +33,12 @@ func (s *Server) GetShopInfo(ctx context.Context, message *pb.GetScrapingRequest
 
 	doc, _ := goquery.NewDocumentFromReader(reader)
 
-	tel := doc.Find("p.rstinfo-table__tel-num-wrap > strong")
+	tel := doc.Find("p.rstinfo-table__tel-num-wrap > strong").Text()
 
 	return &pb.ScrapingResponse{
 		Name:         "sample restaurant name",
 		Address:      "sample Address 1",
-		Tell:         "sample tell number",
+		Tell:         tel,
 		OpeningHours: "11 hours",
 	}, nil
 }
