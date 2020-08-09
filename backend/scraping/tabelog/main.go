@@ -4,8 +4,9 @@ import (
 	"log"
 	"net"
 
+	pb "github.com/aweglteo/fullstack_development/api/scraping"
+	"github.com/aweglteo/fullstack_development/backend/scraping/tabelog/scraping"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/reflection"
 )
 
 // this module is scraping server via gRPC
@@ -14,12 +15,11 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
+
+	ss := scraping.Server{}
+
 	server := grpc.NewServer()
-
-	// sampleUrl := "https://tabelog.com/tokyo/A1310/A131002/13181683/"
-	// scrapingService := ScrapingService{}
-
-	reflection.Register(server)
+	pb.RegisterScrapingServer(server, &ss)
 
 	log.Println("server start ... ")
 

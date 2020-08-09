@@ -5,12 +5,12 @@ service Scraping {
 }
 
 message GetScrapingRequest {
-  string target_link = 1;
+  string targetLink = 1;
 }
 
 message ScrapingResponse {
   string name = 1;
   string address = 2;
   string tell = 3;
-  string opening_hours = 4;
+  string openingHours = 4;
 }

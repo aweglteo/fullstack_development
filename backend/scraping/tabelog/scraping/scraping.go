@@ -1,17 +1,23 @@
-package main
+package scraping
 
 import (
+	"bytes"
 	"context"
-	pb "github.com/aweglteo/fullstack_development/api/scraping"
+	"io/ioutil"
+	"net/http"
+
 	"github.com/PuerkitoBio/goquery"
+	pb "github.com/aweglteo/fullstack_development/api/scraping"
 	"github.com/saintfish/chardet"
 	"golang.org/x/net/html/charset"
 )
 
-type ScrapingService struct {
+type Server struct {
 }
 
-func (s* ScrapingService) GetRestaurantInfo(ctx context.Context, message *pb.GetScrapingRequest) (*pb.ScrapingResponse, error) {
+// sampleUrl := "https://tabelog.com/tokyo/A1310/A131002/13181683/"
+
+func (s *Server) GetShopInfo(ctx context.Context, message *pb.GetScrapingRequest) (*pb.ScrapingResponse, error) {
 	tabelogUrl := message.TargetLink
 
 	res, _ := http.Get(tabelogUrl)
@@ -30,9 +36,9 @@ func (s* ScrapingService) GetRestaurantInfo(ctx context.Context, message *pb.Get
 	tel := doc.Find("p.rstinfo-table__tel-num-wrap > strong")
 
 	return &pb.ScrapingResponse{
-		Name: "sample restaurant name",
-		Address: "sample Address 1",
-		Tell: "sample tell number",
+		Name:         "sample restaurant name",
+		Address:      "sample Address 1",
+		Tell:         "sample tell number",
 		OpeningHours: "11 hours",
 	}, nil
 }
