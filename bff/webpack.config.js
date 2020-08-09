@@ -3,8 +3,7 @@ const path = require("path");
 const config = {
   entry: {
     vendor: ["@babel/polyfill", "react"],
-    app: ["./src/components/index.js"],
-    top: ["./src/components/topindex.js"]
+    top: ["./src/components/top/index.ts"]
   },
   output: {
     path: path.resolve(__dirname, "public"),
@@ -26,10 +25,38 @@ const config = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
       },
+      {
+        test: /\.ts(x?)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: [
+                [
+                  '@babel/preset-env',
+                  {
+                    useBuiltIns: 'usage',
+                    corejs: 3,
+                  },
+                ],
+                [
+                  '@babel/preset-react',
+                  {
+                    useBuiltIns: 'usage',
+                    corejs: 3,
+                  },
+                ],
+                '@babel/preset-typescript',
+              ],
+            },
+          },
+        ],
+      },
     ]
   },
   resolve: {
-    extensions: [".js", ".jsx", ".json", ".wasm", ".mjs", "*"]
+    extensions: [".js", ".jsx", ".ts", ".tsx", ".json", ".wasm", ".mjs", "*"]
   }
 };
 

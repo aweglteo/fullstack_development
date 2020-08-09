@@ -1,25 +1,30 @@
 import React from 'react';
-import { _, e_msgs } from "../constants";
-import axios from "../setting"
+import { constants, e_msgs } from "../../constants";
+const { default: axios } = require('axios');
 
 
-class Top extends React.Component {
-  constructor() {
-    super();
-    this.handleTextChange = this.handleTextChange.bind(this)
-    this.handlePostLink = this.handlePostLink.bind(this)
-    this.state = {
-      linkURL: "",
-    }
+interface MyProps {
+  handleTextChange: (e: any) => void,
+  handlePostLink: (e: any) => void
+}
+
+interface MyState {
+  linkURL: string,
+}
+
+export default class Top extends React.Component<MyProps, MyState> {
+  state: MyState = {
+    linkURL: "",
   };
 
-  handleTextChange = e => {
+  public handleTextChange = e => {
     this.setState({ linkURL: e.target.value });
     console.log(this.state.linkURL);
   };
 
-  handlePostLink = e => {
-    let reqUrl = "/restaurants/stock"
+  public handlePostLink = e => {
+    const reqUrl: string = constants.API_SERVER_HOST + ":" + constants.API_SERVER_PORT + "/api/v1" + "/restaurants/stock"
+
     axios.post(reqUrl, { params: { linkURL: this.state.linkURL }})
       .then((res) => {
         console.log(res)
@@ -50,5 +55,3 @@ class Top extends React.Component {
     )
   }
 }
-
-export default Top;
