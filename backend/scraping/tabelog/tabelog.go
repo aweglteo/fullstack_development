@@ -11,8 +11,7 @@ import (
 	"golang.org/x/net/html/charset"
 )
 
-// 食べログのURLがぶち込まれたら、スクレイピングして情報をDBに保存する。
-func scraping(url string) {
+func Scraping(url string) {
 	res, _ := http.Get(url)
 	defer res.Body.Close()
 
@@ -27,12 +26,5 @@ func scraping(url string) {
 	doc, _ := goquery.NewDocumentFromReader(reader)
 
 	tel := doc.Find("p.rstinfo-table__tel-num-wrap > strong")
-	// address := doc.Find("p.rstinfo-table__address > span").Text()
-	if 
 	fmt.Println(tel)
-}
-
-func main() {
-	url := "https://tabelog.com/tokyo/A1310/A131002/13181683/"
-	scraping(url)
 }

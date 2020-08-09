@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+service Scraping {
+  rpc GetShopInfo (GetScrapingRequest) returns (ScrapingResponse) {}
+}
+
+message GetScrapingRequest {
+  string target_link = 1;
+}
+
+message ScrapingResponse {
+  string name = 1;
+  string address = 2;
+  string tell = 3;
+  string opening_hours = 4;
+}
