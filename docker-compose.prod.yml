@@ -9,14 +9,17 @@ services:
     volumes:
       - ./api:/go/src/work
   
-  tabelogparser:
+  bff:
     build:
-      ./backend/scraping/tabelog/
+      ./bff/
     tty: true
     ports:
-      - "9000:9000"
+      - "3030:3030"
     volumes:
-      - ./backend/scraping/tabelog/:/go/src/work
+      - ./bff:/bff/src/work/
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - API_SERVER_PORT=3030
 
   postgresql:
     image: postgres:latest
