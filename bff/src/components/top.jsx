@@ -1,7 +1,9 @@
 import React from 'react';
-import axios from 'axios';
+import { _, e_msgs } from "../constants";
+import axios from "../setting"
 
-class Toppage extends React.Component {
+
+class Top extends React.Component {
   constructor() {
     super();
     this.handleTextChange = this.handleTextChange.bind(this)
@@ -13,17 +15,26 @@ class Toppage extends React.Component {
 
   handleTextChange = e => {
     this.setState({ linkURL: e.target.value });
+    console.log(this.state.linkURL);
   };
 
   handlePostLink = e => {
-
+    let reqUrl = "/restaurants/stock"
+    axios.post(reqUrl, { params: { linkURL: this.state.linkURL }})
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.log(e_msgs.API_SERVER_ERROR)
+        console.log(err)
+      })
   };
 
   render() {
     return (
       <div className="topage">
         <header className="App-header">
-          <div>Hello This is Toppage!</div>
+          <div>Hello This is Toppage!!</div>
         </header>
         <div>
           <input
@@ -40,4 +51,4 @@ class Toppage extends React.Component {
   }
 }
 
-export default Toppage;
+export default Top;

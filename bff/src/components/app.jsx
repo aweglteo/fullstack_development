@@ -13,7 +13,6 @@ class App extends React.Component {
     };
   }
 
-  //Handlers
   handleButtonClick = e => {
     const nameLen = this.state.name.length;
     if (nameLen > 0) {
