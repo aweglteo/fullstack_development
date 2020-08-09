@@ -1,19 +1,14 @@
 import express from "express";
+const request = require('request');
 
 const api = express.Router();
 
-// TODO: remove this is test endpoint
-api.get("/restaurants/stock", async (req, res) => {
-    res.json({
-        message: "Hello World!",
-        shopURL: req.data
-    });
-});
-
 api.post("/restaurants/stock", async (req, res) => {
-    res.json({
-        message: "Hello World!"
-    });
+    request({url:'http://localhost:8080/restaurants/stock', method:"POST"}, (err, rres, body) => {
+        res.json({
+            message: body
+        });
+    })
 });
   
 export default api;

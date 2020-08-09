@@ -13,7 +13,7 @@ func main() {
 	})
 	r.POST("/restaurants/stock", func(c *gin.Context) {
 		c.JSON(200, gin.H{
-			"message": "success",
+			"message": "tabelog restaurants is stocked in RDBMS",
 		})
 	})
 	r.Run()
