@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"log"
 
-	pb "github.com/aweglteo/fullstack_development/api/scraping"
+	pb "github.com/aweglteo/fullstack_development/api/external/scraping"
 	"google.golang.org/grpc"
 )
 

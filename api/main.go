@@ -1,20 +1,10 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
+	"github.com/aweglteo/fullstack_development/api/external/router"
 )
 
 func main() {
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
-	r.POST("/restaurants/stock", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "tabelog restaurants is stocked in RDBMS",
-		})
-	})
-	r.Run()
+	// listening gin server
+	router.Router.Run()
 }

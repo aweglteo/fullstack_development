@@ -7,7 +7,7 @@ import (
 	"net/http"
 
 	"github.com/PuerkitoBio/goquery"
-	pb "github.com/aweglteo/fullstack_development/api/scraping"
+	pb "github.com/aweglteo/fullstack_development/api/external/scraping"
 	"github.com/saintfish/chardet"
 	"golang.org/x/net/html/charset"
 )

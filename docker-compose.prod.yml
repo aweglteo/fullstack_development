@@ -21,6 +21,15 @@ services:
       - CHOKIDAR_USEPOLLING=true
       - API_SERVER_PORT=3030
 
+  tabelogparser:
+    build:
+      ./backend/scraping/tabelog/
+    tty: true
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./backend/scraping/tabelog/:/go/src/work
+
   postgresql:
     image: postgres:latest
     ports:
