@@ -3,8 +3,11 @@ package controllers
 import (
 	"net/http"
 
+	"github.com/aweglteo/fullstack_development/api/adapter/gateway"
+	"github.com/aweglteo/fullstack_development/api/usecase"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
+	"github.com/jinzhu/gorm"
 )
 
 type RestaurantParams struct {
@@ -12,10 +15,17 @@ type RestaurantParams struct {
 }
 
 type RestaurantController struct {
+	Interactor usecase.RestaurantInteractor
 }
 
-func NewRestaurantController() *RestaurantController {
-	return &RestaurantController{}
+func NewRestaurantController(conn *gorm.DB) *RestaurantController {
+	return &RestaurantController{
+		Interactor: usecase.RestaurantInteractor{
+			RestaurantRepository: &gateway.RestaurantRepository{
+				Conn: conn,
+			},
+		},
+	}
 }
 
 func (controller *RestaurantController) Stock(c *gin.Context) {

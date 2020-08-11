@@ -5,25 +5,37 @@ import (
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"github.com/joho/godotenv"
 )
+
+func loadEnv() {
+	err := godotenv.Load()
+	if err != nil {
+		panic("Error loading .env file")
+	}
+}
 
 var GormDB *gorm.DB
 
-func main() *gorm.DB {
-	DBMS := "postgres"
+func main() {
+	loadEnv()
+	PLOTOCOL := "postgres"
 	HOST := os.Getenv("DB_HOST")
 	PORT := os.Getenv("DB_PORT")
 	USERNAME := os.Getenv("DB_USER")
 	PASSWORD := os.Getenv("DB_PASSWORD")
 	DBNAME := os.Getenv("DB_NAME")
 
-	PROTOCOL := "tcp(" + HOST + ":" + PORT + ")"
+	CONNECT := "host=" + HOST + " port=" + PORT + " user=" + USERNAME + " dbname=" + DBNAME + " password=" + PASSWORD + " sslmode=disable"
 
-	CONNECT := USERNAME + ":" + PASSWORD + "@" + PROTOCOL + "/" + DBNAME
-
-	GormDB, err := gorm.Open(PROTOCOL, CONNECT)
+	db, err := gorm.Open(PLOTOCOL, CONNECT)
 	if err != nil {
 		panic(err.Error())
 	}
-	return GormDB
+	GormDB = db
+	// return GormDB
+}
+
+func CloseConn() {
+	GormDB.Close()
 }
