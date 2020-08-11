@@ -25,7 +25,7 @@ export default class Top extends React.Component<MyProps, MyState> {
   public handlePostLink = e => {
     const reqUrl: string = constants.API_SERVER_HOST + ":" + constants.API_SERVER_PORT + "/api/v1" + "/restaurants/stock"
 
-    axios.post(reqUrl, { params: { linkURL: this.state.linkURL }})
+    axios.post(reqUrl, {linkURL: this.state.linkURL })
       .then((res) => {
         console.log(res)
       })

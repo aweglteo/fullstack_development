@@ -14,6 +14,9 @@ services:
       DB_PASSWORD: root
       DB_PORT: 5432
       DB_NAME: fullstack_dev_db
+
+      PARSER_HOST: localhost
+      PARSER_PORT: 9000
   
   tabelogparser:
     build:

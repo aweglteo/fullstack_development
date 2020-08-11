@@ -5,12 +5,11 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-var Router *gin.Engine
-
-func init() {
-	Router = gin.Default()
+func NewRouter() *gin.Engine {
+	Router := gin.Default()
 
 	// restaurant Controller
 	restaurantConroller := controllers.NewRestaurantController()
-	Router.POST("/restaurants/stock", func(c *gin.Context) { restaurantConroller.Create(c) })
+	Router.POST("/restaurants/stock", func(c *gin.Context) { restaurantConroller.Stock(c) })
+	return Router
 }

@@ -4,7 +4,7 @@ import (
 	"log"
 	"net"
 
-	pb "github.com/aweglteo/fullstack_development/api/scraping"
+	pb "github.com/aweglteo/fullstack_development/api/external/scraping"
 	"github.com/aweglteo/fullstack_development/backend/scraping/tabelog/scraping"
 	"google.golang.org/grpc"
 )
