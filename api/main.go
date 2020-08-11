@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/aweglteo/fullstack_development/api/external/grpcc"
 	"github.com/aweglteo/fullstack_development/api/external/postgres"
 	"github.com/aweglteo/fullstack_development/api/external/router"
 	"github.com/joho/godotenv"
@@ -22,8 +23,11 @@ func main() {
 	fmt.Printf("DBHOST: %s\n", os.Getenv("DB_HOST"))
 
 	r := router.NewRouter()
-	postgres.Connect()
+	// establish PostgreSQL connection
+	// postgres.Connect()
+	grpcc.Connect()
 
+	defer grpcc.CloseConn()
 	defer postgres.CloseConn()
 	r.Run()
 }

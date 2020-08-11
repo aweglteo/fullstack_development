@@ -28,7 +28,8 @@ services:
       - ./backend/scraping/tabelog/:/go/src/work
 
   postgresql:
-    image: postgres:latest
+    build:
+      ./database
     ports:
       - "5432:5432"
     environment:

@@ -3,6 +3,8 @@ package controllers
 import (
 	"net/http"
 
+	pb "github.com/aweglteo/fullstack_development/api/external/scraping"
+
 	"github.com/aweglteo/fullstack_development/api/adapter/gateway"
 	"github.com/aweglteo/fullstack_development/api/usecase"
 	"github.com/gin-gonic/gin"
@@ -18,11 +20,12 @@ type RestaurantController struct {
 	Interactor usecase.RestaurantInteractor
 }
 
-func NewRestaurantController(conn *gorm.DB) *RestaurantController {
+func NewRestaurantController(conn *gorm.DB, grpcclient *pb.ScrapingClient) *RestaurantController {
 	return &RestaurantController{
 		Interactor: usecase.RestaurantInteractor{
 			RestaurantRepository: &gateway.RestaurantRepository{
-				Conn: conn,
+				Conn:       conn,
+				GRPCClient: grpcclient,
 			},
 		},
 	}
@@ -31,6 +34,7 @@ func NewRestaurantController(conn *gorm.DB) *RestaurantController {
 func (controller *RestaurantController) Stock(c *gin.Context) {
 	var rp RestaurantParams
 	err := c.ShouldBindWith(&rp, binding.Header)
+
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"status":  "error",

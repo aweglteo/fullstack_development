@@ -1,4 +1,4 @@
-package main
+package postgres
 
 import (
 	"os"
@@ -17,7 +17,7 @@ func loadEnv() {
 
 var GormDB *gorm.DB
 
-func main() {
+func Connect() *gorm.DB {
 	loadEnv()
 	PLOTOCOL := "postgres"
 	HOST := os.Getenv("DB_HOST")
@@ -33,7 +33,7 @@ func main() {
 		panic(err.Error())
 	}
 	GormDB = db
-	// return GormDB
+	return GormDB
 }
 
 func CloseConn() {

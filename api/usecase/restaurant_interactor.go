@@ -12,3 +12,7 @@ type RestaurantInteractor struct {
 func (i *RestaurantInteractor) Add(r domain.Restaurant) {
 	i.RestaurantRepository.Store(r)
 }
+
+func (i *RestaurantInteractor) GetInfo(targetURL string) (domain.Restaurant, error) {
+	return i.RestaurantRepository.GetInfo(targetURL)
+}

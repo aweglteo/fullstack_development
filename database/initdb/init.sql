@@ -1,0 +1,1 @@
+CREATE DATABASE IF NOT EXISTS fullstack_dev_db;

@@ -15,7 +15,7 @@ docker-compose build
 ```
   
 ```
-dockr-compose up -d
+docker-compose up -d
 ```
 then, backend services are running.  
   

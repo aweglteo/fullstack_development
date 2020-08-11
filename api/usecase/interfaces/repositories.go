@@ -6,4 +6,5 @@ type RestaurantRepository interface {
 	Store(domain.Restaurant) (id int, err error)
 	FindByUser(domain.User) ([]domain.Restaurant, error)
 	FindAll() ([]domain.Restaurant, error)
+	GetInfo(string) (domain.Restaurant, error)
 }
