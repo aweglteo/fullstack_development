@@ -1,9 +1,10 @@
 package controllers
 
 import (
+	"fmt"
 	"net/http"
 
-	pb "github.com/aweglteo/fullstack_development/api/external/scraping"
+	"google.golang.org/grpc"
 
 	"github.com/aweglteo/fullstack_development/api/adapter/gateway"
 	"github.com/aweglteo/fullstack_development/api/usecase"
@@ -20,12 +21,12 @@ type RestaurantController struct {
 	Interactor usecase.RestaurantInteractor
 }
 
-func NewRestaurantController(conn *gorm.DB, grpcclient *pb.ScrapingClient) *RestaurantController {
+func NewRestaurantController(conn *gorm.DB, grpcconn *grpc.ClientConn) *RestaurantController {
 	return &RestaurantController{
 		Interactor: usecase.RestaurantInteractor{
 			RestaurantRepository: &gateway.RestaurantRepository{
-				Conn:       conn,
-				GRPCClient: grpcclient,
+				Conn:     conn,
+				GRPCConn: grpcconn,
 			},
 		},
 	}
@@ -40,8 +41,14 @@ func (controller *RestaurantController) Stock(c *gin.Context) {
 			"status":  "error",
 			"message": "No linkURL data in HTTP Header"})
 	}
+
+	fmt.Println("linkurl is ... !! ", rp.LinkURL)
+	restaurant, _ := controller.Interactor.GetInfo(rp.LinkURL)
+
 	c.JSON(http.StatusOK, gin.H{
-		"statue":  "sucess",
+		"statue":  "success",
 		"message": "your favorite restaurants is stocked in RDBMS",
+		"link":    rp.LinkURL,
+		"result":  restaurant.Name,
 	})
 }

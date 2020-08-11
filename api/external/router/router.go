@@ -11,9 +11,10 @@ func NewRouter() *gin.Engine {
 	Router := gin.Default()
 
 	gormcon := postgres.GormDB
-	grpcclient := grpcc.GRPCClient
+	grpcon := grpcc.GRPConn
+
 	// restaurant Controller
-	restaurantConroller := controllers.NewRestaurantController(gormcon, grpcclient)
+	restaurantConroller := controllers.NewRestaurantController(gormcon, grpcon)
 	Router.POST("/restaurants/stock", func(c *gin.Context) { restaurantConroller.Stock(c) })
 	return Router
 }
