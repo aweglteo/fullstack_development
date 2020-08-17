@@ -36,9 +36,23 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
       POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+      DB_NAME: "fullstack_dev_db"
     user: root
     volumes:
       - pgdata:/var/lib/postgresql/data
   
+  migration:
+    depends_on:
+      - "postgresql"
+    build:
+      ./database/migration
+    volumes:
+      - ./database/migration/:/work/migration
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+      DB_NAME: "fullstack_dev_db"
+
 volumes:
   pgdata:

@@ -1,0 +1,7 @@
+adapter: postgresql
+encoding: utf8
+database: <%= ENV['DB_NAME'] || 'fullstack_dev_db' %>
+username: <%= ENV['POSTGRES_USER'] || 'root' %>
+password: <%= ENV['POSTGRES_PASSWORD'] || 'root' %>
+host: postgresql
+port: 5432
